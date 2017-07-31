@@ -12,7 +12,7 @@ function Bird.new(location)
   t.color = {255, 0, 0}
   t.acceleration = Vector.new(0, 0)
   t.velocity = Vector.new(0, 0)
-  t.upwardForce = Vector.new(0, -250)
+  t.upwardForce = Vector.new(0, -400)
   t.isAlive = true
 
   return t
