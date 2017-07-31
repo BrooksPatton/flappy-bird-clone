@@ -5,6 +5,9 @@ local gravity
 local flap
 local titleFont
 local playing
+local Pipe = require('./Pipe')
+local pipe1
+local pipe2
 
 function love.load()
   width = love.graphics.getWidth()
@@ -16,6 +19,9 @@ end
 
 function love.draw()
   bird:draw()
+  pipe1:draw()
+  pipe2:draw()
+
   if not bird.isAlive then
     love.graphics.setColor(255, 255, 255)
     love.graphics.setFont(titleFont)
@@ -52,7 +58,12 @@ end
 
 function resetGame()
   local location = Vector.new(25, 25)
+  local pipe1Loc = Vector.new(width/2, 0)
+  local pipe2Loc = Vector.new(width, 0)
+  
   bird = Bird.new(location)
   flap = false
   playing = true
+  pipe1 = Pipe.new(pipe1Loc)
+  pipe2 = Pipe.new(pipe2Loc)
 end
