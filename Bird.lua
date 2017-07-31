@@ -12,6 +12,7 @@ function Bird.new(location)
   t.color = {255, 0, 0}
   t.acceleration = Vector.new(0, 0)
   t.velocity = Vector.new(0, 0)
+  t.upwardForce = Vector.new(0, -250)
 
   return t
 end
@@ -29,6 +30,11 @@ function Bird:update()
   self.velocity = self.velocity + self.acceleration
   self.location = self.location + self.velocity
   self.acceleration = self.acceleration * 0
+end
+
+function Bird:flap(dt)
+  self.velocity = self.velocity * 0
+  self:applyForce(self.upwardForce * dt)
 end
 
 return Bird
