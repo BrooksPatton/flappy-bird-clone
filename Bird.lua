@@ -13,6 +13,7 @@ function Bird.new(location)
   t.acceleration = Vector.new(0, 0)
   t.velocity = Vector.new(0, 0)
   t.upwardForce = Vector.new(0, -250)
+  t.isAlive = true
 
   return t
 end
@@ -27,14 +28,28 @@ function Bird:applyForce(force)
 end
 
 function Bird:update()
-  self.velocity = self.velocity + self.acceleration
-  self.location = self.location + self.velocity
-  self.acceleration = self.acceleration * 0
+  if self.isAlive then
+    self.velocity = self.velocity + self.acceleration
+    self.location = self.location + self.velocity
+    self.acceleration = self.acceleration * 0
+
+    if self:isOffBottomOfScreen() then
+      self.isAlive = false
+    end
+  end
 end
 
 function Bird:flap(dt)
   self.velocity = self.velocity * 0
   self:applyForce(self.upwardForce * dt)
+end
+
+function Bird:isOffBottomOfScreen()
+  if self.location.y > height then
+    return true
+  else
+    return false
+  end
 end
 
 return Bird
