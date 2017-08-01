@@ -48,6 +48,9 @@ function love.update(dt)
   pipe1:update(dt)
   pipe2:update(dt)
 
+  bird:checkCollisionWith(pipe1)
+  bird:checkCollisionWith(pipe2)
+
   if not bird.isAlive then
     playing = false
   end

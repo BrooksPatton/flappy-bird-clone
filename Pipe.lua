@@ -40,4 +40,21 @@ function Pipe:isOffScreen()
   end
 end
 
+function Pipe:collidingWith(bird)
+  if self:collideXWithBird(bird) and self:collideYWithBird(bird) then
+    return true
+  else
+    return false
+  end
+end
+
+function Pipe:collideXWithBird(bird)
+  return (bird.location.x > self.location.x and bird.location.x < self.location.x + self.width) or
+    (bird.location.x + bird.size > self.location.x and bird.location.x + bird.size < self.location.x + self.width)
+end
+
+function Pipe:collideYWithBird(bird)
+  return bird.location.y < self.gapLocation or bird.location.y + bird.size > self.gapLocation + self.gapSize
+end
+
 return Pipe

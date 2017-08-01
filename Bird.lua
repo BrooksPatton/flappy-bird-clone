@@ -52,4 +52,12 @@ function Bird:isOffBottomOfScreen()
   end
 end
 
+function Bird:checkCollisionWith(pipe)
+  local result = pipe:collidingWith(self) 
+
+  if result then
+    self.isAlive = false
+  end
+end
+
 return Bird
